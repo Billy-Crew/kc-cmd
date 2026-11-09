@@ -1,0 +1,383 @@
+/* PMR 문서 커스텀 스타일 — 브랜드 폰트/색 정교화 */
+
+:root {
+  /* Spoqa Han Sans Neo (무료 웹폰트, CDN 로드) 우선 — 미로드 시 Noto Sans KR 대체 */
+  --md-text-font: "Spoqa Han Sans Neo", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 상단 헤더바 색상 — Figma 시안 반영 (shadow-green #78909c)
+   Material 팔레트(primary=indigo)가 :root 보다 우선하므로 같은 속성 선택자로 덮어씀 */
+[data-md-color-primary="indigo"] {
+  --md-primary-fg-color: #78909c;
+  --md-primary-fg-color--light: #90a3ad;
+  --md-primary-fg-color--dark: #5f7482;
+}
+/* 다크 모드(slate) — 상단 헤더바를 어두운 색으로 (라이트 shadow-green이 그대로 남는 문제 수정) */
+[data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
+  --md-primary-fg-color: #1f2430;
+  --md-primary-fg-color--light: #2a3040;
+  --md-primary-fg-color--dark: #161a23;
+  /* 헤더 위 텍스트·아이콘은 밝게 유지 */
+  --md-primary-bg-color: rgba(255, 255, 255, 0.95);
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+}
+
+/* 헤더 로고 — 크기 키움 + 모서리 둥글게(사각 모서리의 파란색 노출 방지) + 텍스트와 간격 */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 6px;
+  display: block;      /* inline 여백 제거 + 수직 정렬 */
+}
+.md-header__button.md-logo {
+  margin-right: 0.1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;   /* 로고 수직 중앙 */
+}
+/* 로고 옆 사이트 제목의 좌측 여백도 축소 */
+.md-header__title {
+  margin-left: 0;
+}
+
+/* h1: 브랜드 컬러 + 하단 라인 */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #2a1c55;
+  border-bottom: 3px solid #2a1c55;
+  padding-bottom: 0.3em;
+}
+/* 다크 모드 — 어두운 보라(#2a1c55)가 배경에 묻히지 않게 밝은 라벤더로 */
+[data-md-color-scheme="slate"] .md-typeset h1 {
+  color: #a2c4c9;
+  border-bottom-color: #a2c4c9;
+}
+
+/* h2: 좌측 강조 바 */
+.md-typeset h2 {
+  border-left: 5px solid #4285f4;
+  padding-left: 0.5em;
+}
+/* 다크 모드 — h2 강조 바가 어두운 배경에 묻히지 않게 밝은 그레이로 */
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-left-color: #cccccc;
+}
+
+/* 인라인 코드 색상 */
+.md-typeset code {
+  color: #8a3324;
+}
+[data-md-color-scheme="slate"] .md-typeset code {
+  color: #f0b866;
+}
+
+/* 표 디자인: 둥근 모서리 + 브랜드 헤더 + 행 hover (Claude Code 디자인 편집 데모) */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(20, 29, 41, 0.08);
+}
+.md-typeset table:not([class]) th {
+  background: #0349c5;
+  color: #ffffff;
+  font-weight: 700;
+}
+/* 다크 모드 — 표 헤더(컬럼) 배경을 딥 퍼플로 */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background: #595959;
+}
+/* 표 텍스트도 사이트 본문 폰트 사용 (인라인 코드는 monospace 유지) */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  font-family: var(--md-text-font);
+}
+.md-typeset table:not([class]) tr:hover td {
+  background: #eef4fb;
+}
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) tr:hover td {
+  background: #1f2430;
+}
+
+/* 도식(figure) 컨테이너 */
+.md-typeset figure {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 16px 12px 6px;
+  background: #fdfdfe;
+  overflow-x: auto;
+}
+[data-md-color-scheme="slate"] .md-typeset figure {
+  background: #1b1f2a;
+}
+.md-typeset figure svg {
+  display: block;
+  margin: 0 auto;
+  width: 100%;        /* 본문 폭 꽉 채움 — 좌우 여백 제거, 가로·세로 함께 확대 */
+  max-width: 100%;
+  height: auto;       /* viewBox/width·height 비율로 높이 자동 (letterbox 없음) */
+}
+/* 도식 텍스트도 사이트 본문 폰트 사용 (SVG의 generic sans-serif 대체) */
+.md-typeset figure svg text {
+  font-family: var(--md-text-font);
+}
+.md-typeset figcaption {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}
+
+/* ========================================================
+   사이드바(내비게이션) 디자인 — 추천 1안
+   그룹 제목 강조 · 선택 항목 강조 · hover · 폭/여백 · 구분 · 스크롤바
+   ======================================================== */
+
+/* 데스크톱에서 사이드바 폭을 살짝 넓혀 한글 항목이 한 줄에 들어오게 */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary { width: 13.5rem; }
+}
+
+/* 그룹(섹션) 제목 — 시작하기 · 핵심 개념 · 운영 … (Figma: #0349c5) */
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  color: #0349c5 !important;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 1;
+  margin: 1rem 0 0.25rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__item--section > .md-nav__link {
+  color: #7aa5e0 !important;
+}
+
+/* 사이드바 상단 사이트 제목 (Figma: #595959) */
+.md-nav--primary > .md-nav__title {
+  color: #595959;
+}
+
+/* 하위 항목 링크 — 텍스트 #252525, 둥근 모서리 + 여백 */
+.md-nav--primary .md-nav__item .md-nav__link {
+  color: #252525;
+  border-radius: 6px;
+  padding: 0.34rem 0.55rem;
+  margin: 0.05rem 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__item .md-nav__link {
+  color: var(--md-default-fg-color);
+}
+
+/* hover (선택된 항목은 제외 — 흰 pill 유지) */
+.md-nav--primary .md-nav__link:not(.md-nav__link--active):hover {
+  background: rgba(3, 73, 197, 0.07);
+  color: #0349c5;
+}
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link:not(.md-nav__link--active):hover {
+  background: rgba(122, 165, 224, 0.15);
+  color: #a9c6ef;
+}
+
+/* 현재 페이지(활성) 항목 — 흰색 배경 pill + 파란 텍스트 (Figma) */
+.md-nav--primary .md-nav__link--active,
+.md-nav--primary .md-nav__link[aria-current="page"] {
+  background: #ffffff;
+  color: #0349c5 !important;
+  font-weight: 700;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(20, 29, 41, 0.06);
+}
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link[aria-current="page"] {
+  background: #2a2f3a;
+  color: #a9c6ef !important;
+  box-shadow: none;
+}
+
+/* 사이드바 스크롤바 숨김 (스크롤 기능은 유지) */
+.md-sidebar__scrollwrap {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* 구형 Edge/IE */
+}
+.md-sidebar__scrollwrap::-webkit-scrollbar {   /* Chrome/Safari */
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* 사이드바 배경 — Figma: 둥근 #F4F4F8 카드(모서리 12px, 상하 패딩), 높이 채움 (데스크톱) */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    background: transparent;
+    border: none;
+  }
+  /* 배경 카드는 실제 높이가 있는 스크롤 영역에 적용 */
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    background: #f4f4f8;
+    border-radius: 12px;
+    padding: 0 0 0.6rem;           /* 상단 패딩은 sticky 제목이 담당 */
+  }
+  [data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap {
+    background: #1a1e28;
+  }
+  /* 사이드바 사이트 제목 — sticky + 불투명 배경으로 스크롤 내용이 위로 비치는 것 방지.
+     Material 기본 흰색 box-shadow(브라이트 halo)를 카드색과 동일하게 바꿔 제거 */
+  .md-sidebar--primary .md-nav__title {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f4f4f8;
+    box-shadow: 0 0 8px 8px #f4f4f8;
+    padding-top: 0.6rem;
+  }
+  [data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title {
+    background: #1a1e28;
+    box-shadow: 0 0 8px 8px #1a1e28;
+  }
+}
+
+/* ========== 상단 헤더 검색창 — Figma 시안(밝은 배경 #f4f4f8) ========== */
+.md-search__form {
+  background-color: rgba(244, 244, 248, 0.13);   /* #F4F4F8 13% */
+  border-radius: 8px;
+  box-shadow: none;
+}
+.md-search__form:hover {
+  background-color: rgba(244, 244, 248, 0.22);
+}
+.md-search__input {
+  color: #f3f3f3;
+}
+.md-search__input::placeholder {
+  color: rgba(243, 243, 243, 0.75);
+}
+.md-header .md-search__icon {
+  color: #f3f3f3;
+}
+
+/* 헤더 아이콘 전체 크기 축소 (검색·토글 등) */
+.md-header .md-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+/* 다크모드 토글(달)은 아웃라인이라 조금 더 작게 */
+[data-md-component="palette"] .md-icon svg {
+  width: 0.92rem;
+  height: 0.92rem;
+}
+/* 토글 버튼 — 검색바와의 간격 (DOM상 검색바보다 앞이라 양쪽 여백으로 확실히 분리) */
+[data-md-component="palette"] {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+/* 토글 버튼 원형 배경 + 영역(버튼) 크기 축소 (Figma 시안 — #F4F4F8 저투명) */
+[data-md-component="palette"] .md-header__button {
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  margin: 0.35rem 0;
+  position: relative;   /* 내부 SVG 절대 중앙정렬 기준 */
+  background-color: rgba(244, 244, 248, 0.13);
+  border-radius: 50%;
+}
+/* 아이콘 중앙 고정 — Material 기본 `.md-option:checked+label{display:block}`이
+   우리 place-items:center를 덮어써 아이콘이 위로 뜨고 달/해 baseline 차이로 토글 시
+   위치가 튀던 문제 수정. SVG를 버튼 정중앙에 절대 고정해 스킴 무관하게 정렬 유지 */
+[data-md-component="palette"] .md-header__button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+[data-md-component="palette"] .md-header__button:hover {
+  background-color: rgba(244, 244, 248, 0.24);
+  opacity: 1;
+}
+/* 현재 스킴에서 숨겨야 하는 토글은 계속 숨김 (display 오버라이드 복구) */
+[data-md-component="palette"] .md-header__button[hidden] {
+  display: none;
+}
+
+/* ========================================================
+   목차(TOC, 우측 보조 내비) 상태별 색 — Figma Color styles 기반
+   default(Neutral gray) → select = hover(Brand blue 계열, 라이트 #0349c5 / 다크 #a4c2f4)
+   ======================================================== */
+/* --- 라이트 --- */
+.md-nav--secondary .md-nav__link {                 /* default: Neutral/gray1 */
+  color: #595959;
+}
+.md-nav--secondary .md-nav__link--active {         /* select: Brand/main blue */
+  color: #0349c5;
+}
+.md-nav--secondary .md-nav__link[href]:hover,
+.md-nav--secondary .md-nav__link[href]:focus {     /* hover = select: Brand/main blue */
+  color: #0349c5;
+}
+/* --- 다크 --- */
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link {          /* default: Neutral/gray2 */
+  color: #999999;
+}
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link--active {  /* select: Accent/font-light blue */
+  color: #a4c2f4;
+}
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link[href]:hover,
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link[href]:focus {  /* hover = select: Accent/font-light blue */
+  color: #a4c2f4;
+}
+
+/* ========================================================
+   도식(Diagram) 컬러 시스템 — 역할별 색을 규칙적으로 · 라이트/다크 대응
+   SVG 요소에 dg-* 클래스를 부여하면 아래 변수로 색이 적용됨
+   (CSS는 인라인 presentation 속성보다 우선하므로 인라인 hex는 fallback)
+   ======================================================== */
+.md-typeset figure {           /* 라이트(기본) 토큰 */
+  --dg-stage-bg:#e9f0fb; --dg-stage-line:#0349c5; --dg-stage-tx:#0349c5;
+  --dg-input-bg:#fdeee7; --dg-input-line:#b23a24; --dg-input-tx:#b23a24;
+  --dg-output-bg:#e7f3ec; --dg-output-line:#177245; --dg-output-tx:#177245;
+  --dg-accent-bg:#fbf2da; --dg-accent-line:#8a6d1f; --dg-accent-tx:#8a6d1f;
+  --dg-node-bg:#f4f6f9;  --dg-node-line:#c2ccd8;
+  --dg-log-bg:#eef2f8;   --dg-log-line:#7f9dbf;
+  --dg-surface:#ffffff;
+  --dg-loggerbar-bg:#101720;
+  --dg-arrow:#3d4a5c;    --dg-arrow-muted:#7f9dbf;
+  --dg-text-strong:#141d29; --dg-text-sub:#69788c; --dg-text-onbar:#d9e2ec;
+}
+[data-md-color-scheme="slate"] .md-typeset figure {   /* 다크 토큰 */
+  --dg-stage-bg:#17233a; --dg-stage-line:#5b8dd6; --dg-stage-tx:#a4c2f4;
+  --dg-input-bg:#351d17; --dg-input-line:#d9765b; --dg-input-tx:#eba98f;
+  --dg-output-bg:#16271e; --dg-output-line:#4aa877; --dg-output-tx:#8fd3ad;
+  --dg-accent-bg:#322810; --dg-accent-line:#c9a94a; --dg-accent-tx:#e0c67a;
+  --dg-node-bg:#1b222e;  --dg-node-line:#3a4658;
+  --dg-log-bg:#1f2836;   --dg-log-line:#6d86a6;
+  --dg-surface:#232b39;
+  --dg-loggerbar-bg:#0c1119;
+  --dg-arrow:#8593a8;    --dg-arrow-muted:#6d86a6;
+  --dg-text-strong:#e9e9ea; --dg-text-sub:#9fb0c3; --dg-text-onbar:#d9e2ec;
+}
+/* 박스(rect 등): fill + stroke */
+.md-typeset figure .dg-box-stage   { fill:var(--dg-stage-bg);  stroke:var(--dg-stage-line); }
+.md-typeset figure .dg-box-input   { fill:var(--dg-input-bg);  stroke:var(--dg-input-line); }
+.md-typeset figure .dg-box-output  { fill:var(--dg-output-bg); stroke:var(--dg-output-line); }
+.md-typeset figure .dg-box-accent  { fill:var(--dg-accent-bg); stroke:var(--dg-accent-line); }
+.md-typeset figure .dg-box-node    { fill:var(--dg-node-bg);   stroke:var(--dg-node-line); }
+.md-typeset figure .dg-box-log     { fill:var(--dg-log-bg);    stroke:var(--dg-log-line); }
+.md-typeset figure .dg-box-surface { fill:var(--dg-surface); }
+.md-typeset figure .dg-box-loggerbar { fill:var(--dg-loggerbar-bg); }
+/* 텍스트: fill */
+.md-typeset figure .dg-tx-stage  { fill:var(--dg-stage-tx); }
+.md-typeset figure .dg-tx-input  { fill:var(--dg-input-tx); }
+.md-typeset figure .dg-tx-output { fill:var(--dg-output-tx); }
+.md-typeset figure .dg-tx-accent { fill:var(--dg-accent-tx); }
+.md-typeset figure .dg-tx-strong { fill:var(--dg-text-strong); }
+.md-typeset figure .dg-tx-sub    { fill:var(--dg-text-sub); }
+.md-typeset figure .dg-tx-onbar  { fill:var(--dg-text-onbar); }
+/* 화살표/선: stroke + fill(화살촉) */
+.md-typeset figure .dg-arrow        { stroke:var(--dg-arrow);        fill:var(--dg-arrow); }
+.md-typeset figure .dg-arrow-muted  { stroke:var(--dg-arrow-muted);  fill:var(--dg-arrow-muted); }
+.md-typeset figure .dg-arrow-stage  { stroke:var(--dg-stage-line);   fill:var(--dg-stage-line); }
+.md-typeset figure .dg-arrow-output { stroke:var(--dg-output-line);  fill:var(--dg-output-line); }
+.md-typeset figure .dg-arrow-input  { stroke:var(--dg-input-line);   fill:var(--dg-input-line); }
+.md-typeset figure .dg-arrow-accent { stroke:var(--dg-accent-line);  fill:var(--dg-accent-line); }
