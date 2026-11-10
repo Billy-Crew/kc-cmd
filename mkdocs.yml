@@ -42,7 +42,18 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - KC Command 소개: index.md
+  - 시작하기:
+      - KC Command 소개: index.md
+      - 명령어 한눈에 보기: 02_명령어-한눈에-보기.md
+  - 설정과 점검:
+      - 초기 설정과 점검: 03_초기-설정과-점검.md
+      - 송출 설정: 04_송출-설정.md
+  - 서비스 운영:
+      - 서비스 기동과 종료: 05_서비스-기동과-종료.md
+      - 서비스 모니터링: 06_서비스-모니터링.md
+      - 증적 조회와 재생: 07_증적-조회와-재생.md
+  - 운영 도구:
+      - 운영 도구: 08_운영-도구.md
 
 markdown_extensions:
   - admonition
