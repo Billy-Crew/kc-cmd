@@ -100,10 +100,9 @@
   background: #1f2430;
 }
 
-/* 표 첫 열의 링크 — 테마 주색(청회색)이 흐려서 라이트 모드는 검정으로 (다크 모드는 본문색) */
+/* 표 첫 열의 링크 — 테마 주색(청회색)이 흐려서 라이트 모드는 검정으로 (다크 모드는 본문색). 굵게는 하지 않는다 */
 .md-typeset table:not([class]) td:first-child > a {
   color: #000000;
-  font-weight: 600;
 }
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) td:first-child > a {
   color: var(--md-default-fg-color);
