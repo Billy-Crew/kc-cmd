@@ -40,7 +40,7 @@ kc [명령어] [인자]
 | [서비스 기동과 종료](05_서비스-기동과-종료.md) | `service`, `all-services`, `run`, `kill`, `lockclear` |
 | [서비스 모니터링](06_서비스-모니터링.md) | `ps`, `stat`, `queue`, `check-pulse`, `u_diag_local_node`, `log` |
 | [증적 조회와 재생](07_증적-조회와-재생.md) | `audit-log`, `play`, `cli` |
-| [운영 도구](08_운영-도구.md) | `t_switchover_emit`, 캐시·파일 정리, 설정 도구 |
+| [운영 도구](08_운영-도구.md) | `strace`, `t_switchover_emit`, 캐시·파일 정리, 설정 도구 |
 
 !!! warning "작성 중"
     명령어와 설명을 먼저 정리한 초기 버전입니다. 옵션 상세와 출력 예시는 단계적으로 추가합니다.
