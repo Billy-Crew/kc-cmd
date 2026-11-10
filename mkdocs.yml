@@ -54,6 +54,8 @@ nav:
       - 증적 조회와 재생: 07_증적-조회와-재생.md
   - 운영 도구:
       - 운영 도구: 08_운영-도구.md
+  - 응용 활용:
+      - 증적을 TXT/CSV로 변환하기: 09_증적-TXT-CSV-변환.md
 
 markdown_extensions:
   - admonition

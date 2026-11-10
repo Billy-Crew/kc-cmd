@@ -41,6 +41,7 @@ kc [명령어] [인자]
 | [서비스 모니터링](06_서비스-모니터링.md) | `ps`, `stat`, `queue`, `check-pulse`, `u_diag_local_node`, `log`, `strace` |
 | [증적 조회와 재생](07_증적-조회와-재생.md) | `audit-log`, `play`, `cli` |
 | [운영 도구](08_운영-도구.md) | `t_switchover_emit`, 캐시·파일 정리, 설정 도구 |
+| [증적을 TXT/CSV로 변환하기](09_증적-TXT-CSV-변환.md) | `kc play` 와 `cb_convert` 로 증적에서 원하는 전문만 변환하는 응용 활용 |
 
 !!! warning "작성 중"
     명령어와 설명을 먼저 정리한 초기 버전입니다. 옵션 상세와 출력 예시는 단계적으로 추가합니다.
