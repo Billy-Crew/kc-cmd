@@ -58,19 +58,21 @@ kc play name:rcv[이름] date:YYYYMMDD time:HHMMSS~HHMMSS \
 
 자주 쓰는 필터 파일은 서버의 `cfg/templates/play_filters/` 에 있습니다. 서버에 따라 일부 파일이 없을 수 있으니 `ls $v17/cfg/templates/play_filters/` 로 확인하세요.
 
-### 필터 파일 예 — 옵션 심볼 전문
+### 필터 파일 예 — 심볼 구조가 있는 전문
+
+같은 전문을 세 가지 형식으로 저장하는 필터 파일이 한 벌로 제공됩니다. 파일 이름의 `[이름]` 은 대상 전문에 따라 정해집니다. 서버에 어떤 파일이 있는지는 `ls $v17/cfg/templates/play_filters/` 로 확인하세요.
 
 | 필터 파일 | 저장 위치 | 설명 |
 |---|---|---|
-| `flt_cme16_csv.moon` | `/tmp/cme16.csv` | 옵션 심볼 구조를 검색해 `seq`, `time`, `rid`, `head`, `symbol`, `data` 열로 저장합니다. 제어 바이트와 `\` 는 `\xHH` 로 바뀌어 분석과 검색에 알맞습니다. |
-| `flt_cme16_txt.moon` | `/tmp/cme16.txt` | 해당 전문 전체를 한 건당 한 줄로 저장합니다. `grep`, `cat`, 편집기로 확인할 때 씁니다. 필터 파일 안의 심볼 패턴 조건 주석을 풀면 옵션 데이터만 골라 저장할 수 있습니다. |
-| `flt_cme16_txt_raw.moon` | `/tmp/cme16_raw.txt` | 옵션 구조만 골라 **원본 바이트를 그대로** 저장합니다. 바이트 단위 비교나 hex dump 확인에 씁니다. |
+| `flt_[이름]_csv.moon` | `/tmp/[이름].csv` | 심볼 구조를 검색해 `seq`, `time`, `rid`, `head`, `symbol`, `data` 열로 저장합니다. 제어 바이트와 `\` 는 `\xHH` 로 바뀌어 분석과 검색에 알맞습니다. |
+| `flt_[이름]_txt.moon` | `/tmp/[이름].txt` | 해당 전문 전체를 한 건당 한 줄로 저장합니다. `grep`, `cat`, 편집기로 확인할 때 씁니다. 필터 파일 안의 심볼 패턴 조건 주석을 풀면 해당 심볼의 데이터만 골라 저장할 수 있습니다. |
+| `flt_[이름]_txt_raw.moon` | `/tmp/[이름]_raw.txt` | 심볼 구조만 골라 **원본 바이트를 그대로** 저장합니다. 바이트 단위 비교나 hex dump 확인에 씁니다. |
 
 ```bash
 kc play name:rcv[이름] date:YYYYMMDD time:HHMMSS~HHMMSS \
-  script:cb_convert with-cfg:$v17/cfg/templates/play_filters/flt_cme16_csv.moon
+  script:cb_convert with-cfg:$v17/cfg/templates/play_filters/flt_[이름]_csv.moon
 
-head /tmp/cme16.csv
+head /tmp/[이름].csv
 ```
 
 저장 위치는 필터 파일 안의 `out:` 으로 정해져 있습니다. 다른 곳에 저장하려면 필터 파일을 복사해 `out:` 을 바꾸고, 복사한 파일을 `with-cfg:` 로 지정하세요.
