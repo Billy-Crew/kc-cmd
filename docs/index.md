@@ -29,7 +29,7 @@ kc [명령어] [인자]
 |---|---|
 | [명령어 한눈에 보기](02_명령어-한눈에-보기.md) | 이 문서가 다루는 명령어 전체 목록 |
 | [초기 설정과 점검](03_초기-설정과-점검.md) | `init`, `compile`, `test`, `run-TEST` |
-| [송출 설정](04_송출-설정.md) | `set`, `set-emit` |
+| [송출 설정](04_송출-설정.md) | `set-emit` |
 | [서비스 기동과 종료](05_서비스-기동과-종료.md) | `service`, `all-services`, `run`, `kill`, `lockclear` |
 | [서비스 모니터링](06_서비스-모니터링.md) | `ps`, `stat`, `queue`, `check-pulse`, `u_diag_local_node`, `log`, `strace` |
 | [증적 조회와 재생](07_증적-조회와-재생.md) | `audit-log`, `play`, `cli` |
