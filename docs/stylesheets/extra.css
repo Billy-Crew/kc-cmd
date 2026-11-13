@@ -92,6 +92,7 @@
 .md-typeset table:not([class]) th,
 .md-typeset table:not([class]) td {
   font-family: var(--md-text-font);
+  word-break: keep-all;        /* 한글을 글자 단위로 끊지 않고 띄어쓰기에서만 줄바꿈 */
 }
 .md-typeset table:not([class]) tr:hover td {
   background: #eef4fb;
